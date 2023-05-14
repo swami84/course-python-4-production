@@ -112,6 +112,9 @@ class DataReader:
         }
         """
     ######################################## YOUR CODE HERE ##################################################
+        print(self._fp)
+        for line in open(self._fp, 'r'):
+            yield {col:value for col, value in zip(self._col_names, line.split(self._sep))}
 
     ######################################## YOUR CODE HERE ##################################################
 
