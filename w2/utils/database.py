@@ -45,7 +45,9 @@ class DB:
         Read more about datatypes in Sqlite here -> https://www.sqlite.org/datatype3.html
         """
     ######################################## YOUR CODE HERE ##################################################
-        self._connection.execute('''CREATE TABLE IF NOT EXISTS {0} 
+        self._connection.execute(f'''DROP TABLE IF EXISTS {self._table_name} ''')
+        self._connection.commit()
+        self._connection.execute(f'''CREATE TABLE IF NOT EXISTS {self._table_name} 
                                  (process_id TEXT NOT NULL,
                                 file_name TEXT DEFAULT NULL,
                                 file_path TEXT DEFAULT NULL,
@@ -53,7 +55,7 @@ class DB:
                                 start_time TEXT NOT NULL,
                                 end_time TEXT DEFAULT NULL,
                                 percentage REAL DEFAULT NULL
-        )'''.format(self._table_name))
+        )''')
 
         self._connection.commit()
     ######################################## YOUR CODE HERE ##################################################
@@ -75,8 +77,11 @@ class DB:
     ######################################## YOUR CODE HERE ##################################################
         
         self._connection.execute(
-            f'''INSERT INTO {self._table_name} VALUES (?,?,?,?,?,?,?)''', (process_id, start_time, file_name, file_path,
-               description, end_time, percentage)
+            f'''INSERT INTO {self._table_name}
+            (process_id, file_name, file_path,description,
+               start_time, end_time, percentage)
+              VALUES (?,?,?,?,?,?,?)''', (process_id, file_name, file_path,description,
+               start_time, end_time, percentage)
         )
         self._connection.commit()
     ######################################## YOUR CODE HERE ##################################################

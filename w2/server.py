@@ -53,7 +53,7 @@ async def get() -> HTMLResponse:
     should render the HTML file - index.html when a user goes to http://127.0.0.1:8000/
     """
     ######################################## YOUR CODE HERE ##################################################
-    HTMLResponse(content=open('index.html', 'r'), status_code=200)
+    return HTMLResponse(content=open('index.html', 'r').read(), status_code=200)
     ######################################## YOUR CODE HERE ##################################################
 
 
@@ -64,6 +64,6 @@ async def get() -> List[ProcessStatus]:
     Get all the records from the process table and return it using the pydantic model ProcessStatus
     """
     ######################################## YOUR CODE HERE ##################################################
-    data = DB.read_all()
+    data = DB().read_all()
     return [ProcessStatus(**process) for process in data]
     ######################################## YOUR CODE HERE ##################################################
