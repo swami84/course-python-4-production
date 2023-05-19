@@ -48,10 +48,11 @@ class DB:
         self._connection.execute('''CREATE TABLE IF NOT EXISTS {0} 
                                  (process_id TEXT NOT NULL,
                                 file_name TEXT DEFAULT NULL,
+                                file_path TEXT DEFAULT NULL,
                                 description TEXT DEFAULT NULL,
                                 start_time TEXT NOT NULL,
                                 end_time TEXT DEFAULT NULL,
-                                percentage REAL DEFAULT NULL,
+                                percentage REAL DEFAULT NULL
         )'''.format(self._table_name))
 
         self._connection.commit()
@@ -109,7 +110,10 @@ class DB:
         :return: None
         """
     ######################################## YOUR CODE HERE ##################################################
-
+        self._connection.execute(f'''UPDATE {self._table_name} 
+        SET percentage = {percentage} 
+        where process_id = {process_id}''')
+        self._connection.commit()
     ######################################## YOUR CODE HERE ##################################################
 
 
