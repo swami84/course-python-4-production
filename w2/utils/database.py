@@ -72,7 +72,12 @@ class DB:
         :return: None
         """
     ######################################## YOUR CODE HERE ##################################################
-
+        
+        self._connection.execute(
+            f'''INSERT INTO {self._table_name} VALUES (?,?,?,?,?,?,?)''', (process_id, start_time, file_name, file_path,
+               description, end_time, percentage)
+        )
+        self._connection.commit()
     ######################################## YOUR CODE HERE ##################################################
 
     def read_all(self) -> List[Dict]:
