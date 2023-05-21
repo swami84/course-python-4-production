@@ -117,7 +117,7 @@ class DB:
     ######################################## YOUR CODE HERE ##################################################
         self._connection.execute(f'''UPDATE {self._table_name} 
         SET percentage = {percentage} 
-        where process_id = {process_id}''')
+        where process_id =' {process_id}' ''')
         self._connection.commit()
     ######################################## YOUR CODE HERE ##################################################
 
