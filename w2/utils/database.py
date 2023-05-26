@@ -45,8 +45,8 @@ class DB:
         Read more about datatypes in Sqlite here -> https://www.sqlite.org/datatype3.html
         """
     ######################################## YOUR CODE HERE ##################################################
-        self._connection.execute(f'''DROP TABLE IF EXISTS {self._table_name} ''')
-        self._connection.commit()
+        # self._connection.execute(f'''DROP TABLE IF EXISTS {self._table_name} ''')
+        # self._connection.commit()
         self._connection.execute(f'''CREATE TABLE IF NOT EXISTS {self._table_name} 
                                  (process_id TEXT NOT NULL,
                                 file_name TEXT DEFAULT NULL,
@@ -116,7 +116,7 @@ class DB:
         """
     ######################################## YOUR CODE HERE ##################################################
         self._connection.execute(f'''UPDATE {self._table_name} 
-        SET percentage = {percentage} 
+        SET percentage = '{percentage}'
         where process_id =' {process_id}' ''')
         self._connection.commit()
     ######################################## YOUR CODE HERE ##################################################
